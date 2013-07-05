@@ -8,7 +8,7 @@ import java.io.File
 
 object ApplicationBuild extends Build {
 
-  val appName         = "play-example-quality-assurance"
+  val appName         = "play-example-continuous-integration"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
