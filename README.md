@@ -27,8 +27,7 @@ assurance tool enhancements documented in [play-example-quality-assurance](http:
 Step 2: Set up your CloudBees account and create a sample Play application
 --------------------------------------------------------------------------
 
-Step 2a: Create a ClickStart Play Application
-*********************************************
+*Step 2a: Create a ClickStart Play Application*
 
 Now set up an account on CloudBees. After you have created your account, use [ClickStart](https://developer.cloudbees.com/bin/view/RUN/ClickStart) 
 to automagically create a sample Play application.  While running the Play ClickStart, CloudBees will:
@@ -41,8 +40,7 @@ to automagically create a sample Play application.  While running the Play Click
 This, clearly, is pretty sweet, and you'll want to keep this sample app around for reference purposes. 
 ClickStart also ensures that you've set things up correctly.
 
-Step 2b: Install CloudBees SDK
-******************************
+*Step 2b: Install CloudBees SDK*
 
 Once you have a sample app deployed using ClickStart, you should install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK).   
 
