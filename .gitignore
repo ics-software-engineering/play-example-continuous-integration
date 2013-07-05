@@ -11,3 +11,5 @@ dist
 /.idea_modules
 /RUNNING_PID
 /.settings
+/.target
+.DS_Store
