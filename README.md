@@ -101,7 +101,7 @@ installed, the "Available" tab in the Manage Plugins page should contain the fol
 **Step 3C: Install and configure build status badge (Optional)**
 
 It's nice to be able to display the status of continuous integration in your GitHub page.  Here's 
-an example from a GitHub README.md file:
+an example from the bottom of the [play-example-quality-assurance project's README page](https://github.com/ics-software-engineering/play-example-quality-assurance):
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/build-status-badge.png"/>
 
@@ -114,8 +114,8 @@ Restart Jenkins.  Once Jenkins has restarted, you should see the following near 
 
 Now you must configure Jenkins to support anonymous access by following the instructions [here](https://developer.cloudbees.com/bin/view/DEV/AnonymousAccess).
 In brief, you must:
-  # Provide the Jenkins anonymous role with "Job/Read" access.
-  # Flip the switch for anonymous access by going to "Manage Jenkins", then "Configure System", then clicking "Enable read-only access for anonymous users", and finally clicking "Save".
+  1. Provide the Jenkins anonymous role with "Job/Read" access.
+  2. Flip the switch for anonymous access by going to "Manage Jenkins", then "Configure System", then clicking "Enable read-only access for anonymous users", and finally clicking "Save".
 
 
 OTC Step 4: Tell GitHub your CloudBees public key
@@ -125,8 +125,8 @@ In order for the CloudBees Jenkins server to obtain your GitHub project via git,
 to be given your CloudBees public key. Follow the instructions [here](http://wiki.cloudbees.com/bin/view/DEV/How+to+use+Private+GitHub+Repositories+with+CloudBees). 
 Though these instructions say they are necessary for private GitHub repositories, actually you need
 to do this even if your repository is public.  In brief:
-  * In CloudBees, go to Jenkins, then click on "Manage Jenkins", then click on "Configure System".  In the "CloudBees DEV@Cloud Authorization" section, there is a field named "CloudBees Public Key". Copy the contents of that field.   
-  * In GitHub, go to Account Settings, click on "SSH Keys", then click "Add SSH Key", then paste your CloudBees public key and name it something like "CloudBees".
+  1. In CloudBees, go to Jenkins, then click on "Manage Jenkins", then click on "Configure System".  In the "CloudBees DEV@Cloud Authorization" section, there is a field named "CloudBees Public Key". Copy the contents of that field.   
+  2. In GitHub, go to Account Settings, click on "SSH Keys", then click "Add SSH Key", then paste your CloudBees public key and name it something like "CloudBees".
 
 When you're done, your GitHub SSH Key page should look something like this:
 
