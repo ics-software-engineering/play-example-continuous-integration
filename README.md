@@ -8,13 +8,13 @@ Finally, it also illustrates how to trigger deployment from your CI process.
 
 Note that this procedure is tedious and complicated for first-time users of CloudBees.  Luckily, 
 once you have successfully set up your first Play application on GitHub to use CloudBees for CI,
-you can use it as a template for setting up future projects, and the procedures is much easier. 
+you can use it as a template for setting up future projects, and the procedure is much easier. 
 
-Steps
-=====
+One Time Configuration (OTC) Steps
+==================================
 
-Step 1: Set up your GitHub account and host your Play application
------------------------------------------------------------------
+OTC Step 1: Set up your GitHub account and host your Play application
+---------------------------------------------------------------------
 
 Begin by setting up an account on GitHub and hosting your Play application using it.  Follow the 
 [excellent instructions](https://help.github.com/articles/set-up-git) if you 
@@ -24,8 +24,8 @@ You might want to fork this play-example-continuous-integration repo if you want
 with which to play with continuous integration.   This repo also includes the quality 
 assurance tool enhancements documented in [play-example-quality-assurance](http://ics-software-engineering.github.io/play-example-quality-assurance/).
 
-Step 2: Set up your CloudBees account and create a sample Play application
---------------------------------------------------------------------------
+OTC Step 2: Set up your CloudBees account and create a sample Play application
+------------------------------------------------------------------------------
 
 **Step 2A: Create a ClickStart Play Application**
 
@@ -58,8 +58,8 @@ runs its tests successfully in your local environment.
 Once you are comfortable with a "vanilla" version of a Play application on CloudBees, it is now time
 to start customizing it for continuous integration with GitHub.
 
-Step 3: Configure Jenkins plugins
----------------------------------
+OTC Step 3: Configure CloudBees Jenkins plugins
+-----------------------------------------------
 
 **Step 3A: Install GitHub plugin**
 
@@ -88,17 +88,50 @@ Scroll down to the bottom of the page, and make sure that "Manually manage hook 
 
 Part of the allure of continuous integration is the ability to run quality assurance tools such 
 as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
-by those tools over time. To provide good reporting on these tools, you will need to install their
-associated plugins as well.  
+by those tools over time. To provide good reporting on these tools, you will want to install their
+associated plugins as well.  This is an optional step.
 
 Following the same process as before, go to the "Manage Jenkins" page, click on "Manage Plugins", 
 and install the "Static Analysis Utilities", "Static Analysis Collector Plug-in", "FindBugs Plug-In", 
-"Jenkins JaCoCo Plugin", "PMD Plugin", and "Checkstyle Plugin". When all of these have been 
+"Jenkins JaCoCo Plugin", "PMD Plugin", and "Checkstyle Plugin". Restart Jenkins. When all of these have been 
 installed, the "Available" tab in the Manage Plugins page should contain the following:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/qa-plugins.png"/>
 
- 
+**Step 3C: Install and configure build status badge (Optional)**
+
+It's nice to be able to display the status of continuous integration in your GitHub page.  Here's 
+an example from a GitHub README.md file:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/build-status-badge.png"/>
+
+If you want this (and of course you do), you must first install the "embeddable-build-status" plugin
+to Jenkins.  Go to "Manage Jenkins", then "Manage Plugins", then install embeddable-build-status.
+Restart Jenkins.  Once Jenkins has restarted, you should see the following near the bottom of the 
+"Available" tab in the Manage Plugins page:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/embeddable-build-status.png"/>
+
+Now you must configure Jenkins to support anonymous access by following the instructions [here](https://developer.cloudbees.com/bin/view/DEV/AnonymousAccess).
+In brief, you must:
+  # Provide the Jenkins anonymous role with "Job/Read" access.
+  # Flip the switch for anonymous access by going to "Manage Jenkins", then "Configure System", then clicking "Enable read-only access for anonymous users", and finally clicking "Save".
+
+
+OTC Step 4: Tell GitHub your CloudBees public key
+-------------------------------------------------
+
+In order for the CloudBees Jenkins server to obtain your GitHub project via git, GitHub needs
+to be given your CloudBees public key. Follow the instructions [here](http://wiki.cloudbees.com/bin/view/DEV/How+to+use+Private+GitHub+Repositories+with+CloudBees). 
+Though these instructions say they are necessary for private GitHub repositories, actually you need
+to do this even if your repository is public.  In brief:
+  * In CloudBees, go to Jenkins, then click on "Manage Jenkins", then click on "Configure System".  In the "CloudBees DEV@Cloud Authorization" section, there is a field named "CloudBees Public Key". Copy the contents of that field.   
+  * In GitHub, go to Account Settings, click on "SSH Keys", then click "Add SSH Key", then paste your CloudBees public key and name it something like "CloudBees".
+
+When you're done, your GitHub SSH Key page should look something like this:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-public-keys.png"/>
+
 
 
 
