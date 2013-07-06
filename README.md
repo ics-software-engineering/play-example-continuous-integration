@@ -13,6 +13,9 @@ you can use it as a template for setting up future projects, and the procedure i
 One Time Configuration (OTC) Steps
 ==================================
 
+The following steps need to be done only once; they constitute the "global" configuration 
+process for both GitHub and CloudBees for use as CI for Play applications.
+
 OTC Step 1: Set up your GitHub account and host your Play application
 ---------------------------------------------------------------------
 
@@ -139,5 +142,9 @@ When you're done, your GitHub SSH Key page should look something like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-public-keys.png"/>
 
+Per Repository Configuration
+============================
 
+Now that you've finished the global configuration of CloudBees and GitHub, all that's left is to 
+set up the continuous integration process for a specific Play application.   
 
