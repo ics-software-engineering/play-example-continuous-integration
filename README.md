@@ -24,7 +24,7 @@ Begin by setting up an account on GitHub and hosting your Play application using
 [excellent instructions](https://help.github.com/articles/set-up-git) if you 
 haven't done this before.  
 
-You might want to fork this play-example-continuous-integration repo if you want to quickly set up a basic Play application 
+You might want to fork the play-example-continuous-integration repo if you want to quickly set up a basic Play application 
 with which to play with continuous integration.   This repo also includes the quality 
 assurance tool enhancements documented in [play-example-quality-assurance](http://ics-software-engineering.github.io/play-example-quality-assurance/).
 
@@ -41,7 +41,7 @@ to automagically create a sample Play application.  While running the Play Click
   * Build the sample app using the Jenkins job.
   * Deploy the sample app to the CloudBees hosting platform.
   
-This, clearly, is pretty sweet, and you'll want to keep this sample app around for reference purposes. 
+Getting all this done automatically is, clearly, pretty sweet, and you'll want to keep this sample app around for reference purposes. 
 Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
 on CloudBees.
 
@@ -88,7 +88,7 @@ Scroll down to the bottom of the page, and make sure that "Manually manage hook 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manually-manage-hook-url.png"/>
 
 
-**Step 3B: Install QA plugins (Optional)**
+**Step 3B: Install QA plugins (optional)**
 
 Part of the allure of continuous integration is the ability to run quality assurance tools such 
 as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
@@ -102,9 +102,9 @@ installed, the "Available" tab in the Manage Plugins page should contain the fol
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/qa-plugins.png"/>
 
-**Step 3C: Install and configure build status badge (Optional)**
+**Step 3C: Install and configure build status badge (optional)**
 
-It's nice to be able to display the status of continuous integration in your GitHub page.  Here's 
+It's nice to be able to display the status of the build in your GitHub page.  Here's 
 an example from the bottom of the [play-example-quality-assurance project's README page](https://github.com/ics-software-engineering/play-example-quality-assurance):
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/build-status-badge.png"/>
@@ -127,7 +127,7 @@ Now you can display the build badge in your GitHub README file with the followin
 
 Of course, replace "philipmjohnson" and "play-example-quality-assurance" by your own account and job name.
 
-But, we're getting ahead of ourselves. There's just one more "one time configuration" task to do. 
+But, we're getting a little ahead of ourselves, since that's done on a per-repo basis. There's just one more "one time configuration" task to do. 
 
 OTC Step 4: Tell GitHub your CloudBees public key
 -------------------------------------------------
@@ -146,6 +146,38 @@ When you're done, your GitHub SSH Key page should look something like this:
 Per Repository Configuration
 ============================
 
-Now that you've finished the global configuration of CloudBees and GitHub, all that's left is to 
-set up the continuous integration process for a specific Play application.   
+Now that you've finished the global configuration of CloudBees and GitHub, we can now 
+set up continuous integration process for a specific Play application. Let's call this 
+"per repository configuration" (PRC).
+
+PRC Step 1:  Prime the CloudBees pipeline
+-----------------------------------------
+
+Assume you have a GitHub-hosted Play application called "play-example-continuous-integration" for 
+which you want to set up continuous integration on CloudBees. The
+first step is to use the Play ClickStart feature on CloudBees to, in a sense, "prime the pump" by
+creating a sample project also called play-example-continuous-integration. When finished, CloudBees
+will indicate that it has set up a git repository, jenkins job, mysql database, and running application:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/clickstart-play-example-continuous-integration.png"/>
+
+Since we are using GitHub as our repository, we will not need the one created by ClickStart on 
+CloudBees, so it will reduce confusion to delete it.  Click on "Repositories" in the CloudBees nav bar, 
+then select "play-example-continuous-integration", then click "Delete repository".
+
+PRC Step 2: Reconfigure CloudBees Jenkins job for GitHub
+--------------------------------------------------------
+
+Click on "Builds" in the CloudBees nav bar, then select the play-example-continuous-integration job
+to get the following window:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-play-example-continuous-integration.png"/>
+
+
+
+
+
+
+
+
 
