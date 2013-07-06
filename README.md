@@ -1,9 +1,10 @@
 Summary
 =======
 
-The goal of this project is to illustrate how to set up a Play application, hosted on GitHub, 
-to use CloudBees for continuous integration. In addition, it illustrates how to incorporate 
-quality assurance tools (Checkstyle, PMD, FindBugs, and Jacoco) into continuous integration.
+The goal of this project is to illustrate how to set up a [Play](http://playframework.com) application, 
+hosted on [GitHub](http://github.com), 
+to use [CloudBees](http://cloudbees.com) for [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration). In addition, it illustrates how to incorporate 
+quality assurance tools ([Checkstyle](http://checkstyle.sourceforge.net/), [PMD](http://pmd.sourceforge.net/), [FindBugs](http://findbugs.sourceforge.net/), and [Jacoco](http://www.eclemma.org/jacoco/)) into continuous integration.
 Finally, it also illustrates how to trigger deployment from your CI process.
 
 Note that this procedure is tedious and complicated for first-time users of CloudBees.  Luckily, 
