@@ -66,6 +66,7 @@ Step 3: Configure Jenkins
 In CloudBees, click on the "Builds" button in the nav bar to bring up your Jenkins instance, then 
 click on "Manage Jenkins" in the left side menu bar. You'll see the following image:
 
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manage-jenkins.png"/>
 
 
 
