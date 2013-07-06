@@ -153,6 +153,8 @@ set up continuous integration process for a specific Play application. Let's cal
 PRC Step 1:  Prime the CloudBees pipeline
 -----------------------------------------
 
+**PRC Step 1A: Create the default project**
+
 Assume you have a GitHub-hosted Play application called "play-example-continuous-integration" for 
 which you want to set up continuous integration on CloudBees. The
 first step is to use the Play ClickStart feature on CloudBees to, in a sense, "prime the pump" by
@@ -161,8 +163,10 @@ will indicate that it has set up a git repository, jenkins job, mysql database, 
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/clickstart-play-example-continuous-integration.png"/>
 
+**PRC Step 1B: Delete the git repo on CloudBees**
+
 Since we are using GitHub as our repository, we will not need the one created by ClickStart on 
-CloudBees, so it will reduce confusion to delete it.  Click on "Repositories" in the CloudBees nav bar, 
+CloudBees, so it will reduce confusion to delete it.  After dismissing this dialog box, click on "Repositories" in the CloudBees nav bar, 
 then select "play-example-continuous-integration", then click "Delete repository".
 
 PRC Step 2: Reconfigure CloudBees Jenkins job for GitHub
@@ -172,6 +176,42 @@ Click on "Builds" in the CloudBees nav bar, then select the play-example-continu
 to get the following window:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-play-example-continuous-integration.png"/>
+
+If you are not seeing all the menu items on the left hand side, it is likely because CloudBees
+is displaying you as a "guest" user.  If so, click on "Login" on the upper right side to restore
+full access to the job.
+
+**PRC Step 2A: Wipe out workspace**
+
+I have had problems in the past that were resolved by deleting the default workspace, so I recommend
+that you click on Workspace, then "Wipe out workspace" to get rid of the default project source files. The 
+following image shows the project just before clicking the "Wipe out workspace" button:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-play-example-continuous-integration.png"/>
+
+**PRC Step 2B: Point Jenkins job at GitHub repo**
+
+Now we'll tell the Jenkins job where the real source code lives.   Go to your GitHub project and 
+find the "SSH Clone URL" text field on the right side of the page, as shown below:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-ssh-clone-url.png"/>
+
+Click the clipboard button to copy the URL. Now go to your CloudBees Jenkins job for 
+play-example-continuous-integration, click on "Configure", and scroll down to the  
+to the source code management section.  You should see something like the following:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-source-code-management-1.png"/>
+
+Jenkins is displaying this error because we previously deleted the default repo on CloudBees.
+
+Now paste in the SSH Clone URL that we copied from the GitHub repo, and tab out of the field. Jenkins
+should now display the following:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-source-code-management-2.png"/>
+
+If Jenkins displays an error, you'll need to fix it. 
+
+
 
 
 
