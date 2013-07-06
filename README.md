@@ -77,7 +77,7 @@ Now go back to the "Manage Jenkins" page, and instead of clicking on "Manage Plu
 "Configure System". You'll find a "Git plugin" section halfway down the page. Provide your user.name
 and user.email values as illustrated below:
 
-<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-plugin-config.png"/>
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/git-plugin-config.png"/>
 
 Scroll down to the bottom of the page, and make sure that "Manually manage hook URLs" is selected:
 
