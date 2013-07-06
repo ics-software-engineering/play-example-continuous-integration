@@ -58,8 +58,8 @@ runs its tests successfully in your local environment.
 Once you are comfortable with a "vanilla" version of a Play application on CloudBees, it is now time
 to start customizing it for continuous integration with GitHub.
 
-Step 3: Configure Jenkins
--------------------------
+Step 3: Configure Jenkins plugins
+---------------------------------
 
 **Step 3A: Install GitHub plugin**
 
@@ -72,6 +72,35 @@ Click on "Manage plugins", click on "Available", find "GitHub Plugin", and then 
 After doing that, you should see the following near the bottom of the list of "Installed" plugins in Jenkins:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-plugin.png"/>
+
+Now go back to the "Manage Jenkins" page, and instead of clicking on "Manage Plugins", click on 
+"Configure System". You'll find a "Git plugin" section halfway down the page. Provide your user.name
+and user.email values as illustrated below:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-plugin-config.png"/>
+
+Scroll down to the bottom of the page, and make sure that "Manually manage hook URLs" is selected:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manually-manage-hook-url.png"/>
+
+
+**Step 3B: Install QA plugins (Optional)**
+-------------------------------
+
+Part of the allure of continuous integration is the ability to run quality assurance tools such 
+as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
+by those tools over time. To provide good reporting on these tools, you will need to install their
+associated plugins as well.  
+
+Following the same process as before, go to the "Manage Jenkins" page, click on "Manage Plugins", 
+and install the "Static Analysis Utilities", "Static Analysis Collector Plug-in", "FindBugs Plug-In", 
+"Jenkins JaCoCo Plugin", "PMD Plugin", and "Checkstyle Plugin". When all of these have been 
+installed, the "Available" tab in the Manage Plugins page should contain the following:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/qa-plugins.png"/>
+
+ 
+
 
 
 
