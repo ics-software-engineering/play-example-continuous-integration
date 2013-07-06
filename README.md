@@ -132,13 +132,10 @@ When you're done, your GitHub SSH Key page should look something like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-public-keys.png"/>
 
+Now you can put this code into your GitHub README file to display the badge:
 
+    [![Build Status](https://philipmjohnson.ci.cloudbees.com/buildStatus/icon?job=play-example-quality-assurance)](https://philipmjohnson.ci.cloudbees.com/job/play-example-quality-assurance/)
 
-
-
-
-
-
-
+Of course, replace "philipmjohnson" and "play-example-quality-assurance" by your own account and job name.
 
 
