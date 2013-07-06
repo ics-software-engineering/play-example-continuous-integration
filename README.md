@@ -27,7 +27,7 @@ assurance tool enhancements documented in [play-example-quality-assurance](http:
 Step 2: Set up your CloudBees account and create a sample Play application
 --------------------------------------------------------------------------
 
-**Step 2a: Create a ClickStart Play Application**
+**Step 2A: Create a ClickStart Play Application**
 
 Now set up an account on CloudBees. After you have created your account, use [ClickStart](https://developer.cloudbees.com/bin/view/RUN/ClickStart) 
 to automagically create a sample Play application.  While running the Play ClickStart, CloudBees will:
@@ -38,11 +38,38 @@ to automagically create a sample Play application.  While running the Play Click
   * Deploy the sample app to the CloudBees hosting platform.
   
 This, clearly, is pretty sweet, and you'll want to keep this sample app around for reference purposes. 
-ClickStart also ensures that you've set things up correctly.
+Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
+on CloudBees.
 
-**Step 2b: Install CloudBees SDK**
+**Step 2B: Install CloudBees SDK**
 
-Once you have a sample app deployed using ClickStart, you should install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK).   
+Now install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK). 
+
+Once installed, download the code for the sample Play app you created using ClickStart to your local
+workspace. To do this successfully, you will need to provide your public key to CloudBees so it
+can authenticate you when you pull the code using git. Here are some useful references:
+  * [How to set your public key for git access in CloudBees](http://wiki.cloudbees.com/bin/view/DEV/How+to+set+your+Public+Key+for+Git+Access)
+  * [Git Troubleshooting on CloudBees](http://wiki.cloudbees.com/bin/view/DEV/Git+-+Getting+Started#HTroubleshooting)
+  * [Help for "Permission denied (public key)"](https://help.github.com/articles/error-permission-denied-publickey)
+  
+Once you've downloaded the application, invoke "play test" to see that the system compiles and 
+runs its tests successfully in your local environment.  
+   
+Once you are comfortable with a "vanilla" version of a Play application on CloudBees, it is now time
+to start customizing it for continuous integration with GitHub.
+
+Step 3: Configure Jenkins
+-------------------------
+
+**Step 3A: Install GitHub plugin**
+
+In CloudBees, click on the "Builds" button in the nav bar to bring up your Jenkins instance, then 
+click on "Manage Jenkins" in the left side menu bar. You'll see the following image:
+
+
+
+
+
 
 
 
