@@ -64,11 +64,14 @@ Step 3: Configure Jenkins
 **Step 3A: Install GitHub plugin**
 
 In CloudBees, click on the "Builds" button in the nav bar to bring up your Jenkins instance, then 
-click on "Manage Jenkins" in the left side menu bar. You'll see the following image:
+click on "Manage Jenkins" in the left side menu bar. This brings you to the following page:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manage-jenkins.png"/>
 
+Click on "Manage plugins", click on "Available", find "GitHub Plugin", and then install and restart your Jenkins instance.
+After doing that, you should see the following near the bottom of the list of "Installed" plugins in Jenkins:
 
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-plugin.png"/>
 
 
 
