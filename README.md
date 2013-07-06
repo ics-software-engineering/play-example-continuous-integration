@@ -85,7 +85,6 @@ Scroll down to the bottom of the page, and make sure that "Manually manage hook 
 
 
 **Step 3B: Install QA plugins (Optional)**
--------------------------------
 
 Part of the allure of continuous integration is the ability to run quality assurance tools such 
 as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
