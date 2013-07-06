@@ -117,6 +117,12 @@ In brief, you must:
   1. Provide the Jenkins anonymous role with "Job/Read" access.
   2. Flip the switch for anonymous access by going to "Manage Jenkins", then "Configure System", then clicking "Enable read-only access for anonymous users", and finally clicking "Save".
 
+Now you can put this code into your GitHub README file to display the badge:
+
+    [![Build Status](https://philipmjohnson.ci.cloudbees.com/buildStatus/icon?job=play-example-quality-assurance)](https://philipmjohnson.ci.cloudbees.com/job/play-example-quality-assurance/)
+
+Of course, replace "philipmjohnson" and "play-example-quality-assurance" by your own account and job name.
+
 
 OTC Step 4: Tell GitHub your CloudBees public key
 -------------------------------------------------
@@ -132,10 +138,5 @@ When you're done, your GitHub SSH Key page should look something like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-public-keys.png"/>
 
-Now you can put this code into your GitHub README file to display the badge:
-
-    [![Build Status](https://philipmjohnson.ci.cloudbees.com/buildStatus/icon?job=play-example-quality-assurance)](https://philipmjohnson.ci.cloudbees.com/job/play-example-quality-assurance/)
-
-Of course, replace "philipmjohnson" and "play-example-quality-assurance" by your own account and job name.
 
 
