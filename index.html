@@ -51,56 +51,18 @@ you have to do every time you want to put a new project under continuous integra
 <p><strong>Overview of One Time Configuration (OTC)</strong></p>
 
 <ol>
-<li><p>Set up your GitHub account and host your Play application</p></li>
-<li>
-<p>Set up your CloudBees account and create a sample Play application </p>
-
-<p>2.1 Create a ClickStart Play Application</p>
-
-<p>2.2 Install CloudBees SDK</p>
-</li>
-<li>
-<p>Configure CloudBees Jenkins plugins</p>
-
-<p>3.1 Install GitHub plugin</p>
-
-<p>3.2 Install QA plugins (optional)</p>
-
-<p>3.3 Install and configure build status badge (optional)</p>
-</li>
-<li><p>Tell GitHub your CloudBees public key</p></li>
+<li>Set up your GitHub account and host your Play application</li>
+<li>Set up your CloudBees account and create a sample Play application </li>
+<li>Configure CloudBees Jenkins plugins</li>
+<li>Tell GitHub your CloudBees public key</li>
 </ol><p><strong>Overview of Per Project Configuration (PPC)</strong></p>
 
 <ol>
-<li>
-<p>Prime the CloudBees pipeline</p>
-
-<p>1.1 Create the default project</p>
-
-<p>1.2 Delete the git repo on CloudBees</p>
-</li>
-<li>
-<p>Make CloudBees Jenkins job point to GitHub repo</p>
-
-<p>2.1 Wipe out workspace</p>
-
-<p>2.2 Point Jenkins job at GitHub repo</p>
-</li>
-<li>
-<p>Configure build trigger</p>
-
-<p>3.1 Set Jenkins job to build after a change to GitHub</p>
-
-<p>3.2 Add a webhook to your GitHub repo</p>
-</li>
-<li><p>Test your new build</p></li>
-<li>
-<p>Automate quality assurance tool invocation (optional)</p>
-
-<p>5.1 Invoke QA tools in the build command</p>
-
-<p>5.2 Invoke QA reporting tools after the build</p>
-</li>
+<li>Prime the CloudBees pipeline</li>
+<li>Make CloudBees Jenkins job point to GitHub repo</li>
+<li>Configure build trigger</li>
+<li>Test your new build</li>
+<li>Automate quality assurance tool invocation (optional)</li>
 </ol><p>Let's now look at each of these steps in detail.</p>
 
 <h1>
