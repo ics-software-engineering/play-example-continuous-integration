@@ -31,7 +31,7 @@ assurance tool enhancements documented in [play-example-quality-assurance](http:
 OTC Step 2: Set up your CloudBees account and create a sample Play application
 ------------------------------------------------------------------------------
 
-**Step 2A: Create a ClickStart Play Application**
+**OTC Step 2A: Create a ClickStart Play Application**
 
 Now set up an account on CloudBees. After you have created your account, use [ClickStart](https://developer.cloudbees.com/bin/view/RUN/ClickStart) 
 to automagically create a sample Play application.  While running the Play ClickStart, CloudBees will:
@@ -45,7 +45,7 @@ Getting all this done automatically is, clearly, pretty sweet, and you'll want t
 Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
 on CloudBees.
 
-**Step 2B: Install CloudBees SDK**
+**OTC Step 2B: Install CloudBees SDK**
 
 Now install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK). 
 
@@ -65,7 +65,7 @@ to start customizing it for continuous integration with GitHub.
 OTC Step 3: Configure CloudBees Jenkins plugins
 -----------------------------------------------
 
-**Step 3A: Install GitHub plugin**
+**OTC Step 3A: Install GitHub plugin**
 
 In CloudBees, click on the "Builds" button in the nav bar to bring up your Jenkins instance, then 
 click on "Manage Jenkins" in the left side menu bar. This brings you to the following page:
@@ -88,7 +88,7 @@ Scroll down to the bottom of the page, and make sure that "Manually manage hook 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manually-manage-hook-url.png"/>
 
 
-**Step 3B: Install QA plugins (optional)**
+**OTC Step 3B: Install QA plugins (optional)**
 
 Part of the allure of continuous integration is the ability to run quality assurance tools such 
 as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
@@ -102,7 +102,7 @@ installed, the "Available" tab in the Manage Plugins page should contain the fol
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/qa-plugins.png"/>
 
-**Step 3C: Install and configure build status badge (optional)**
+**OTC Step 3C: Install and configure build status badge (optional)**
 
 It's nice to be able to display the status of the build in your GitHub page.  Here's 
 an example from the bottom of the [play-example-quality-assurance project's README page](https://github.com/ics-software-engineering/play-example-quality-assurance):
@@ -169,8 +169,8 @@ Since we are using GitHub as our repository, we will not need the one created by
 CloudBees, so it will reduce confusion to delete it.  After dismissing this dialog box, click on "Repositories" in the CloudBees nav bar, 
 then select "play-example-continuous-integration", then click "Delete repository".
 
-PRC Step 2: Reconfigure CloudBees Jenkins job for GitHub
---------------------------------------------------------
+PRC Step 2: Make CloudBees Jenkins job point to GitHub repo
+-----------------------------------------------------------
 
 Click on "Builds" in the CloudBees nav bar, then select the play-example-continuous-integration job
 to get the following window:
@@ -197,8 +197,7 @@ find the "SSH Clone URL" text field on the right side of the page, as shown belo
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-ssh-clone-url.png"/>
 
 Click the clipboard button to copy the URL. Now go to your CloudBees Jenkins job for 
-play-example-continuous-integration, click on "Configure", and scroll down to the  
-to the source code management section.  You should see something like the following:
+play-example-continuous-integration, click on "Configure", and scroll down to the source code management section.  You should see something like the following:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-source-code-management-1.png"/>
 
@@ -209,7 +208,69 @@ should now display the following:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-source-code-management-2.png"/>
 
-If Jenkins displays an error, you'll need to fix it. 
+Click "Save" to save the new repo setting to your Jenkins job configuration.
+
+If Jenkins displays an error, you'll need to fix it. A common problem is forgetting to give
+GitHub your CloudBees public key; see "OTC Step 4" for details.
+
+PRC Step 3: Configure build trigger
+-----------------------------------
+
+To automate continuous integration, we want CloudBees to kick off a build each time a change is 
+pushed to the GitHub repo.  This requires configuration to both CloudBees and Github.
+
+**PRC Step 3A: Set Jenkins job to build after a change to GitHub**
+
+Select "Configure" in your job's home page, then scroll down to the "Build Triggers" section.
+Unselect "Build when a change is pushed to CloudBees forge", and select "Build when a change is
+pushed to GitHub". The section should now look like this:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/build-triggers.png"/>
+
+Click "Save" to save the new build triggers setting.
+
+**PRC Step 3B: Add a webhook to your GitHub repo**
+
+Now go to your GitHub repository, and click on "Settings", then "Service Hooks", then "Webhook URLs".
+Add this webhook URL:
+
+    https://philipmjohnson.ci.cloudbees.com/github-webhook/
+    
+Replace "philipmjohnson" with your own CloudBees account name.  Click "Update Settings". When done,
+it should look like this:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/webhook-url.png"/>
+
+PRC Step 4: Test your new build
+-------------------------------
+
+You can now test your new build.   Simply click on "Test Hook" on the Webhook URL page of your 
+GitHub repo.  You will not get any output from pressing this button, but it should trigger a new build in CloudBees. 
+
+To see if the build was triggered, go back to your CloudBees Jenkins job main page.  Within 10 seconds or so,
+you should start to see activity in the Build History window.  See below for the start of the new build:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/first-build-main-page.png"/>
+
+Once you see build activity, go to the Console window to watch the progress of the first build:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/console-output-1.png"/>
+
+If all goes according to plan, after 5 to 10 minutes the console window should conclude with a 
+successful build and deployment:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/console-output-2.png"/>
+
+
+
+
+
+    
+
+
+
+
+
 
 
 
