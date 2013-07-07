@@ -261,7 +261,26 @@ successful build and deployment:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/console-output-2.png"/>
 
+Congratulations!  You've just set up continuous integration.
 
+PRC Step 5: Automate quality assurance tool invocation (optional)
+-----------------------------------------------------------------
+
+Overall, there are three steps to implementing QA into your continuous integration process:
+
+  1.  Add QA tool invocation to your Play build process, so, for example, you can run "play checkstyle" to 
+      run the Checkstyle QA tool. For instructions on how do this, see the 
+      [play-example-quality-assurance](http://ics-software-engineering.github.io/play-example-quality-assurance/) project.
+      
+  2.  Add the QA tool reporting plugins to your Jenkins instance, as explained in OTC Step 3B above.
+  
+  3.  Modify your Jenkins configuration to (a) invoke the tools as part of the build, and (b) 
+      invoke the reporting tools to gather the data after the build. 
+
+
+This section explains how to do (3).
+
+**PRC Step 5A:  Invoke QA tools as part of the build**  
 
 
 
