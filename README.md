@@ -359,25 +359,3 @@ Acknowledgements
 
 Many thanks to Felix Belzunce of CloudBees who patiently and promptly answered my many questions
 as I developed this tutorial.
-
-
-
-
- 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
