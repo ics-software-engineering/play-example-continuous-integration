@@ -18,26 +18,37 @@ you have to do every time you want to put a new project under continuous integra
 **Overview of One Time Configuration (OTC)**
   1. Set up your GitHub account and host your Play application
   2. Set up your CloudBees account and create a sample Play application 
+  
      2.1 Create a ClickStart Play Application
      2.2 Install CloudBees SDK
+     
   3. Configure CloudBees Jenkins plugins
+  
      3.1 Install GitHub plugin
      3.2 Install QA plugins (optional)
      3.3 Install and configure build status badge (optional)
+     
   4. Tell GitHub your CloudBees public key
 
 **Overview of Per Project Configuration (PPC)**
   1. Prime the CloudBees pipeline
+  
      1.1 Create the default project
      1.2 Delete the git repo on CloudBees
+     
   2. Make CloudBees Jenkins job point to GitHub repo
+  
      2.1 Wipe out workspace
      2.2 Point Jenkins job at GitHub repo
+     
   3. Configure build trigger
+  
      3.1 Set Jenkins job to build after a change to GitHub
      3.2 Add a webhook to your GitHub repo
+     
   4. Test your new build
   5. Automate quality assurance tool invocation (optional)
+  
      5.1 Invoke QA tools in the build command
      5.2 Invoke QA reporting tools after the build
      
