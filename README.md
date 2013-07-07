@@ -7,9 +7,41 @@ to use [CloudBees](http://cloudbees.com) for [continuous integration](https://en
 quality assurance tools ([Checkstyle](http://checkstyle.sourceforge.net/), [PMD](http://pmd.sourceforge.net/), [FindBugs](http://findbugs.sourceforge.net/), and [Jacoco](http://www.eclemma.org/jacoco/)) into continuous integration.
 Finally, it also illustrates how to trigger deployment from your CI process.
 
-Note that this procedure is tedious and complicated for first-time users of CloudBees.  Luckily, 
+Note that this procedure is tedious and complicated the first time you do it.  Luckily, 
 once you have successfully set up your first Play application on GitHub to use CloudBees for CI,
-you can use it as a template for setting up future projects, and the procedure is much easier. 
+you can use it as a template for setting up future projects, and the procedure is much, much faster and easier.
+
+I've divided this procedure into two parts: a "One Time Configuration" (OTC) part containing steps you have to
+perform only once on your GitHub and CloudBees accounts, and a "Per Project Configuration" (PPC) part that
+you have to do every time you want to put a new project under continuous integration.   Here's an overview:
+
+**Overview of One Time Configuration (OTC)**
+  1. Set up your GitHub account and host your Play application
+  2. Set up your CloudBees account and create a sample Play application 
+     2.1 Create a ClickStart Play Application
+     2.2 Install CloudBees SDK
+  3. Configure CloudBees Jenkins plugins
+     3.1 Install GitHub plugin
+     3.2 Install QA plugins (optional)
+     3.3 Install and configure build status badge (optional)
+  4. Tell GitHub your CloudBees public key
+
+**Overview of Per Project Configuration (PPC)**
+  1. Prime the CloudBees pipeline
+     1.1 Create the default project
+     1.2 Delete the git repo on CloudBees
+  2. Make CloudBees Jenkins job point to GitHub repo
+     2.1 Wipe out workspace
+     2.2 Point Jenkins job at GitHub repo
+  3. Configure build trigger
+     3.1 Set Jenkins job to build after a change to GitHub
+     3.2 Add a webhook to your GitHub repo
+  4. Test your new build
+  5. Automate quality assurance tool invocation (optional)
+     5.1 Invoke QA tools in the build command
+     5.2 Invoke QA reporting tools after the build
+     
+Let's now look at each of these steps in detail.
 
 One Time Configuration (OTC) Steps
 ==================================
@@ -31,7 +63,7 @@ assurance tool enhancements documented in [play-example-quality-assurance](http:
 OTC Step 2: Set up your CloudBees account and create a sample Play application
 ------------------------------------------------------------------------------
 
-**OTC Step 2A: Create a ClickStart Play Application**
+**OTC Step 2.1: Create a ClickStart Play Application**
 
 Now set up an account on CloudBees. After you have created your account, use [ClickStart](https://developer.cloudbees.com/bin/view/RUN/ClickStart) 
 to automagically create a sample Play application.  While running the Play ClickStart, CloudBees will:
@@ -45,7 +77,7 @@ Getting all this done automatically is, clearly, pretty sweet, and you'll want t
 Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
 on CloudBees.
 
-**OTC Step 2B: Install CloudBees SDK**
+**OTC Step 2.2: Install CloudBees SDK**
 
 Now install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK). 
 
@@ -65,7 +97,7 @@ to start customizing it for continuous integration with GitHub.
 OTC Step 3: Configure CloudBees Jenkins plugins
 -----------------------------------------------
 
-**OTC Step 3A: Install GitHub plugin**
+**OTC Step 3.1: Install GitHub plugin**
 
 In CloudBees, click on the "Builds" button in the nav bar to bring up your Jenkins instance, then 
 click on "Manage Jenkins" in the left side menu bar. This brings you to the following page:
@@ -88,7 +120,7 @@ Scroll down to the bottom of the page, and make sure that "Manually manage hook 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/manually-manage-hook-url.png"/>
 
 
-**OTC Step 3B: Install QA plugins (optional)**
+**OTC Step 3.2: Install QA plugins (optional)**
 
 Part of the allure of continuous integration is the ability to run quality assurance tools such 
 as Checkstyle, PMD, FindBugs, and Jacoco in the cloud and to see trends in the issues reported
@@ -102,7 +134,7 @@ installed, the "Available" tab in the Manage Plugins page should contain the fol
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/qa-plugins.png"/>
 
-**OTC Step 3C: Install and configure build status badge (optional)**
+**OTC Step 3.3: Install and configure build status badge (optional)**
 
 It's nice to be able to display the status of the build in your GitHub page.  Here's 
 an example from the bottom of the [play-example-quality-assurance project's README page](https://github.com/ics-software-engineering/play-example-quality-assurance):
@@ -143,17 +175,17 @@ When you're done, your GitHub SSH Key page should look something like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/github-public-keys.png"/>
 
-Per Repository Configuration
-============================
+Per Project Configuration
+=========================
 
 Now that you've finished the global configuration of CloudBees and GitHub, we can now 
 set up continuous integration process for a specific Play application. Let's call this 
-"per repository configuration" (PRC).
+"per project configuration" (PPC).
 
-PRC Step 1:  Prime the CloudBees pipeline
+PPC Step 1:  Prime the CloudBees pipeline
 -----------------------------------------
 
-**PRC Step 1A: Create the default project**
+**PPC Step 1.1: Create the default project**
 
 Assume you have a GitHub-hosted Play application called "play-example-continuous-integration" for 
 which you want to set up continuous integration on CloudBees. The
@@ -163,13 +195,13 @@ will indicate that it has set up a git repository, jenkins job, mysql database, 
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/clickstart-play-example-continuous-integration.png"/>
 
-**PRC Step 1B: Delete the git repo on CloudBees**
+**PPC Step 1.2: Delete the git repo on CloudBees**
 
 Since we are using GitHub as our repository, we will not need the one created by ClickStart on 
 CloudBees, so it will reduce confusion to delete it.  After dismissing this dialog box, click on "Repositories" in the CloudBees nav bar, 
 then select "play-example-continuous-integration", then click "Delete repository".
 
-PRC Step 2: Make CloudBees Jenkins job point to GitHub repo
+PPC Step 2: Make CloudBees Jenkins job point to GitHub repo
 -----------------------------------------------------------
 
 Click on "Builds" in the CloudBees nav bar, then select the play-example-continuous-integration job
@@ -181,7 +213,7 @@ If you are not seeing all the menu items on the left hand side, it is likely bec
 is displaying you as a "guest" user.  If so, click on "Login" on the upper right side to restore
 full access to the job.
 
-**PRC Step 2A: Wipe out workspace**
+**PPC Step 2.1: Wipe out workspace**
 
 I have had problems in the past that were resolved by deleting the default workspace, so I recommend
 that you click on Workspace, then "Wipe out workspace" to get rid of the default project source files. The 
@@ -189,7 +221,7 @@ following image shows the project just before clicking the "Wipe out workspace" 
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jenkins-play-example-continuous-integration.png"/>
 
-**PRC Step 2B: Point Jenkins job at GitHub repo**
+**PPC Step 2.2: Point Jenkins job at GitHub repo**
 
 Now we'll tell the Jenkins job where the real source code lives.   Go to your GitHub project and 
 find the "SSH Clone URL" text field on the right side of the page, as shown below:
@@ -213,13 +245,13 @@ Click "Save" to save the new repo setting to your Jenkins job configuration.
 If Jenkins displays an error, you'll need to fix it. A common problem is forgetting to give
 GitHub your CloudBees public key; see "OTC Step 4" for details.
 
-PRC Step 3: Configure build trigger
+PPC Step 3: Configure build trigger
 -----------------------------------
 
 To automate continuous integration, we want CloudBees to kick off a build each time a change is 
 pushed to the GitHub repo.  This requires configuration to both CloudBees and Github.
 
-**PRC Step 3A: Set Jenkins job to build after a change to GitHub**
+**PPC Step 3.1: Set Jenkins job to build after a change to GitHub**
 
 Select "Configure" in your job's home page, then scroll down to the "Build Triggers" section.
 Unselect "Build when a change is pushed to CloudBees forge", and select "Build when a change is
@@ -229,7 +261,7 @@ pushed to GitHub". The section should now look like this:
 
 Click "Save" to save the new build triggers setting.
 
-**PRC Step 3B: Add a webhook to your GitHub repo**
+**PPC Step 3B: Add a webhook to your GitHub repo**
 
 Now go to your GitHub repository, and click on "Settings", then "Service Hooks", then "Webhook URLs".
 Add this webhook URL:
@@ -241,7 +273,7 @@ it should look like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/webhook-url.png"/>
 
-PRC Step 4: Test your new build
+PPC Step 4: Test your new build
 -------------------------------
 
 You can now test your new build.   Simply click on "Test Hook" on the Webhook URL page of your 
@@ -263,7 +295,7 @@ successful build and deployment:
 
 Congratulations!  You've just set up continuous integration.
 
-PRC Step 5: Automate quality assurance tool invocation (optional)
+PPC Step 5: Automate quality assurance tool invocation (optional)
 -----------------------------------------------------------------
 
 Overall, there are three steps to implementing QA into your continuous integration process:
@@ -272,7 +304,7 @@ Overall, there are three steps to implementing QA into your continuous integrati
       run the Checkstyle QA tool. For instructions on how do this, see the 
       [play-example-quality-assurance](http://ics-software-engineering.github.io/play-example-quality-assurance/) project.
       
-  2.  Add the QA tool reporting plugins to your Jenkins instance, as explained in OTC Step 3B above.
+  2.  Add the QA tool reporting plugins to your Jenkins instance, as explained in OTC Step 3.2 above.
   
   3.  Modify your Jenkins configuration to (a) invoke QA tools in the build command, and (b) 
       invoke QA reporting tools after the build. 
@@ -280,7 +312,7 @@ Overall, there are three steps to implementing QA into your continuous integrati
 
 This section explains how to do (3).
 
-**PRC Step 5A: Invoke QA tools in the build command**  
+**PPC Step 5.1: Invoke QA tools in the build command**  
 
 To invoke your quality assurance tools as part of the build, include them in the build command.
 Here is an example of adding checkstyle, pmd, findbugs, and jacoco:cover to the build command, 
@@ -291,7 +323,7 @@ located in the "Build" section of your Jenkins job configuration page:
 Click "Save" to save this change to your configuration.   Then, click "Build Now" to test that
 your commands run correctly within Jenkins.
 
-**PRC Step 5B: Invoke QA reporting tools after the build**
+**PPC Step 5.2: Invoke QA reporting tools after the build**
 
 To obtain reports of your QA tool results within Jenkins, you can add "Post-build Actions".  In the
 Post-build Actions section of your Jenkins job configuration page, click on "Add post-build action". 
@@ -306,9 +338,42 @@ generated by the tool invocation.  If you're not sure where the report is locate
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/post-build-actions.png"/>
 
+Here is an example configuration for Jacoco test coverage reporting:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/jacoco-report-config.png"/>
+
 Click on the "Advanced" button to configure aspects of the report. For example, you can configure the 
-build to fail if a threshold number of warnings are exceeded, or configure the way the graphs are presented 
+build to fail if a threshold number of warnings are exceeded, or configure the way the graphs are presented
 on the page. 
+
+Simplifying the setup once you've done it once
+------------------------------------------------
+
+Here's the silver lining for this whole complicated process:  After you've successfully got one of your projects
+configured for continuous integration, getting the second one is vastly more simple.   In the 
+"New Job" page, choose "copy existing job", and then enter the name of the job that you've already
+set up for continuous integration:
+
+<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/copy-existing-job.png"/>
+ 
+That will do most of the configuration for you.   You'll need to change the git URL to point to your 
+new project's repo, but that might be the only change required if the two projects are otherwise 
+similarly configured.
+
+Build Status
+------------
+
+For illustration purposes, here's the build status of this project:
+
+ [![Build Status](https://philipmjohnson.ci.cloudbees.com/buildStatus/icon?job=play-example-continuous-integration)](https://philipmjohnson.ci.cloudbees.com/job/play-example-continuous-integration/)
+ 
+Acknowledgements
+----------------
+
+Many thanks to Felix Belzunce of CloudBees who patiently and promptly answered my many questions
+as I developed this tutorial.
+
+
 
 
  
