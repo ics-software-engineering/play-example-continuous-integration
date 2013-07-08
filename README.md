@@ -345,15 +345,19 @@ Simplifying the setup once you've done it once
 ------------------------------------------------
 
 Here's the silver lining for this whole complicated process:  After you've successfully got one of your projects
-configured for continuous integration, getting the second one is vastly more simple.   In the 
-"New Job" page, choose "copy existing job", and then enter the name of the job that you've already
-set up for continuous integration:
+configured for continuous integration, getting the second one is vastly more simple.   In brief:
 
-<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/copy-existing-job.png"/>
- 
-That will do most of the configuration for you.   You'll need to change the git URL to point to your 
-new project's repo, but that might be the only change required if the two projects are otherwise 
-similarly configured.
+  * Use ClickStart to create the new project on CloudBees
+  * Delete the CloudBees repository and Jenkins job.
+  * Create a new Jenkins job, using the "Copy existing job" option and selecting a job already setup for CI.
+  * Edit the repository URL and application name.
+  * Add the webhook to your GitHub repo.
+  * Click "Test hook" in GitHub to kick off the new build.
+  
+Here's a screencast that goes over these steps in detail:
+
+[<img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/youtube-continuous-integration.png" width="400">](https://www.youtube.com/watch?v=8AFC3gn_ZF0)
+
 
 Build Status
 ------------
