@@ -11,6 +11,11 @@ Note that this procedure is tedious and complicated the first time you do it.  L
 once you have successfully set up your first Play application on GitHub to use CloudBees for CI,
 you can use it as a template for setting up future projects, and the procedure is much, much faster and easier.
 
+Continuous integration between CloudBees and GitHub requires several different uses of public and 
+private keys.  To help provide intuition on their use, I wrote a blog post on 
+[Introduction to public key authentication for git users](http://philipmjohnson.wordpress.com/2013/07/08/introduction-to-public-key-authentication-for-git-users/). 
+If you are not feeling confident with the use of public and private keys, you may find this posting to be useful.
+
 I've divided this procedure into two parts: a "One Time Configuration" (OTC) part containing steps you have to
 perform only once on your GitHub and CloudBees accounts, and a "Per Project Configuration" (PPC) part that
 you have to do every time you want to put a new project under continuous integration.   Here's an overview:
