@@ -25,7 +25,7 @@ you have to do every time you want to put a new project under continuous integra
   1. Prime the CloudBees pipeline
   2. Make CloudBees Jenkins job point to GitHub repo
   3. Configure build trigger
-  4. Test your new build
+  4. Test your continuous integration and deployment
   5. Automate quality assurance tool invocation (optional)
      
 Let's now look at each of these steps in detail.
@@ -64,21 +64,23 @@ Getting all this done automatically is, clearly, pretty sweet, and you'll want t
 Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
 on CloudBees.
 
-**OTC Step 2.2: Install CloudBees SDK**
+**OTC Step 2.2: Install CloudBees SDK (optional)**
 
-Now install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK). 
+Although it does not appear to be strictly necessary for CI, it can be helpful to 
+install the [CloudBees SDK](http://developer.cloudbees.com/bin/view/RUN/BeesSDK), since it 
+provides command-line access to your CloudBees projects. 
 
-Once installed, download the code for the sample Play app you created using ClickStart to your local
+Test your SDK installation by downloading the code for the sample Play app you created using ClickStart to your local
 workspace. To do this successfully, you will need to provide your public key to CloudBees so it
 can authenticate you when you pull the code using git. Here are some useful references:
   * [How to set your public key for git access in CloudBees](http://wiki.cloudbees.com/bin/view/DEV/How+to+set+your+Public+Key+for+Git+Access)
   * [Git Troubleshooting on CloudBees](http://wiki.cloudbees.com/bin/view/DEV/Git+-+Getting+Started#HTroubleshooting)
   * [Help for "Permission denied (public key)"](https://help.github.com/articles/error-permission-denied-publickey)
   
-Once you've downloaded the application, invoke "play test" to see that the system compiles and 
+Once you've downloaded your sample Play app, invoke "play test" to see that the system compiles and 
 runs its tests successfully in your local environment.  
    
-Once you are comfortable with a "vanilla" version of a Play application on CloudBees, it is now time
+Once you are comfortable manipulating this "vanilla" version of a Play application on CloudBees, it is now time
 to start customizing it for continuous integration with GitHub.
 
 OTC Step 3: Configure CloudBees Jenkins plugins
@@ -260,10 +262,10 @@ it should look like this:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/webhook-url.png"/>
 
-PPC Step 4: Test your new build
--------------------------------
+PPC Step 4: Test your continuous integration and deployment
+-----------------------------------------------------------
 
-You can now test your new build.   Simply click on "Test Hook" on the Webhook URL page of your 
+You can now test your new CI and deployment setup.   Simply click on "Test Hook" on the Webhook URL page of your 
 GitHub repo.  You will not get any output from pressing this button, but it should trigger a new build in CloudBees. 
 
 To see if the build was triggered, go back to your CloudBees Jenkins job main page.  Within 10 seconds or so,
@@ -280,7 +282,8 @@ successful build and deployment:
 
 <img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/console-output-2.png"/>
 
-Congratulations!  You've just set up continuous integration.
+Congratulations!  You've just set up continuous integration.  As an added bonus, your application
+has been automatically deployed to the CloudBees runtime environment and you can play with it there.
 
 PPC Step 5: Automate quality assurance tool invocation (optional)
 -----------------------------------------------------------------
