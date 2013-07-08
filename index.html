@@ -61,7 +61,7 @@ you have to do every time you want to put a new project under continuous integra
 <li>Prime the CloudBees pipeline</li>
 <li>Make CloudBees Jenkins job point to GitHub repo</li>
 <li>Configure build trigger</li>
-<li>Test your new build</li>
+<li>Test your continuous integration and deployment</li>
 <li>Automate quality assurance tool invocation (optional)</li>
 </ol><p>Let's now look at each of these steps in detail.</p>
 
@@ -100,11 +100,13 @@ to automagically create a sample Play application.  While running the Play Click
 Doing the ClickStart also provides a sanity check that you can create, build, and deploy Play apps
 on CloudBees.</p>
 
-<p><strong>OTC Step 2.2: Install CloudBees SDK</strong></p>
+<p><strong>OTC Step 2.2: Install CloudBees SDK (optional)</strong></p>
 
-<p>Now install the <a href="http://developer.cloudbees.com/bin/view/RUN/BeesSDK">CloudBees SDK</a>. </p>
+<p>Although it does not appear to be strictly necessary for CI, it can be helpful to 
+install the <a href="http://developer.cloudbees.com/bin/view/RUN/BeesSDK">CloudBees SDK</a>, since it 
+provides command-line access to your CloudBees projects. </p>
 
-<p>Once installed, download the code for the sample Play app you created using ClickStart to your local
+<p>Test your SDK installation by downloading the code for the sample Play app you created using ClickStart to your local
 workspace. To do this successfully, you will need to provide your public key to CloudBees so it
 can authenticate you when you pull the code using git. Here are some useful references:</p>
 
@@ -112,10 +114,10 @@ can authenticate you when you pull the code using git. Here are some useful refe
 <li><a href="http://wiki.cloudbees.com/bin/view/DEV/How+to+set+your+Public+Key+for+Git+Access">How to set your public key for git access in CloudBees</a></li>
 <li><a href="http://wiki.cloudbees.com/bin/view/DEV/Git+-+Getting+Started#HTroubleshooting">Git Troubleshooting on CloudBees</a></li>
 <li><a href="https://help.github.com/articles/error-permission-denied-publickey">Help for "Permission denied (public key)"</a></li>
-</ul><p>Once you've downloaded the application, invoke "play test" to see that the system compiles and 
+</ul><p>Once you've downloaded your sample Play app, invoke "play test" to see that the system compiles and 
 runs its tests successfully in your local environment.  </p>
 
-<p>Once you are comfortable with a "vanilla" version of a Play application on CloudBees, it is now time
+<p>Once you are comfortable manipulating this "vanilla" version of a Play application on CloudBees, it is now time
 to start customizing it for continuous integration with GitHub.</p>
 
 <h2>
@@ -302,9 +304,9 @@ it should look like this:</p>
 <p><img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/webhook-url.png"></p>
 
 <h2>
-<a name="ppc-step-4-test-your-new-build" class="anchor" href="#ppc-step-4-test-your-new-build"><span class="octicon octicon-link"></span></a>PPC Step 4: Test your new build</h2>
+<a name="ppc-step-4-test-your-continuous-integration-and-deployment" class="anchor" href="#ppc-step-4-test-your-continuous-integration-and-deployment"><span class="octicon octicon-link"></span></a>PPC Step 4: Test your continuous integration and deployment</h2>
 
-<p>You can now test your new build.   Simply click on "Test Hook" on the Webhook URL page of your 
+<p>You can now test your new CI and deployment setup.   Simply click on "Test Hook" on the Webhook URL page of your 
 GitHub repo.  You will not get any output from pressing this button, but it should trigger a new build in CloudBees. </p>
 
 <p>To see if the build was triggered, go back to your CloudBees Jenkins job main page.  Within 10 seconds or so,
@@ -321,7 +323,8 @@ successful build and deployment:</p>
 
 <p><img src="https://raw.github.com/ics-software-engineering/play-example-continuous-integration/master/images/console-output-2.png"></p>
 
-<p>Congratulations!  You've just set up continuous integration.</p>
+<p>Congratulations!  You've just set up continuous integration.  As an added bonus, your application
+has been automatically deployed to the CloudBees runtime environment and you can play with it there.</p>
 
 <h2>
 <a name="ppc-step-5-automate-quality-assurance-tool-invocation-optional" class="anchor" href="#ppc-step-5-automate-quality-assurance-tool-invocation-optional"><span class="octicon octicon-link"></span></a>PPC Step 5: Automate quality assurance tool invocation (optional)</h2>
